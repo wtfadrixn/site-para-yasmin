@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Coisas que eu amo em você 💗</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      font-family: 'Comic Sans MS', cursive;
+      overflow-y: auto;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .frase {
+      background: #ffb6c1;
+      color: #8b005d;
+      padding: 15px 20px;
+      border-radius: 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: aparecer 0.8s ease forwards;
+    }
+
+    .frase img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .frase:nth-child(2) { animation-delay: 0.5s; }
+    .frase:nth-child(3) { animation-delay: 1.5s; }
+    .frase:nth-child(4) { animation-delay: 2.5s; }
+    .frase:nth-child(5) { animation-delay: 3.5s; }
+    .frase:nth-child(6) { animation-delay: 4.5s; }
+
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1em;
+      border-radius: 30px;
+      margin-top: 40px;
+      cursor: pointer;
+      transition: background 0.3s;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      animation: aparecer 0.8s ease forwards;
+      animation-delay: 5.5s;
+    }
+
+    .btn:hover {
+      background-color: #e60073;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="hearts" width="1280" height="585"></canvas>
+
+<div class="container">
+  <h1>Coisas que eu simplismente amo em você 💞</h1>
+
+  <div class="frase">
+    <img src="perfumes.jpg" alt="Perfume">
+    O cheirinho que fica em mim depois de te abraçar
+  </div>
+  <div class="frase">
+    <img src="macumba.jpg" alt="">
+    Sua Religião sendo uma parte importante de você e sua identidade 🙏
+  </div>
+  <div class="frase">
+    <img src="rosa.jpg" alt="uma das suas cor favorita">
+    A forma como você ama rosa uma cor tão delicada quanto você 🌸
+  </div>
+  <div class="frase">
+    <img src="chbrjr.jpg" alt="Banda">
+    Impossivel ouvir Charlie Brown sem lembra de você 🎶
+  </div>
+  <div class="frase">
+    <img src="southpark.jpg" alt="Personagem">
+    Acho muito fofo a relaçâo sua com southpark penso no stan com carinho pensando em você
+  </div>
+
+  <button class="btn" onclick="location.href='nosso_futuro.html'">PROXIMO 💖</button>
+</div>
+
+<script>
+  // ❤️ Fundo animado com corações
+  const canvas = document.getElementById('hearts');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const hearts = [];
+
+  for (let i = 0; i < 50; i++) {
+    hearts.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 10 + 5,
+      speed: Math.random() * 1 + 0.5,
+      opacity: Math.random()
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hearts.forEach(h => {
+      ctx.beginPath();
+      ctx.globalAlpha = h.opacity;
+      ctx.fillStyle = '#ff69b4';
+      ctx.arc(h.x, h.y, h.size, 0, Math.PI * 2);
+      ctx.fill();
+      h.y -= h.speed;
+      if (h.y < -10) {
+        h.y = canvas.height + 10;
+        h.x = Math.random() * canvas.width;
+      }
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+
+
+</body></html>

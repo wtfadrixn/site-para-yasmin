@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Nossos Planos e Como me Imagino com você 💖</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      font-family: 'Comic Sans MS', cursive;
+      overflow-y: auto;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .futuro {
+      background: #ffe4ec;
+      padding: 40px 30px;
+      border-radius: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .futuro h2 {
+      color: #d63384;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .futuro ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .futuro li {
+      font-size: 1.2em;
+      margin: 15px 0;
+      color: #8b005d;
+      background: #ffd1dc;
+      padding: 12px 20px;
+      border-radius: 20px;
+      animation: aparecer 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .futuro li:nth-child(1) { animation-delay: 0.3s; }
+    .futuro li:nth-child(2) { animation-delay: 0.8s; }
+    .futuro li:nth-child(3) { animation-delay: 1.3s; }
+    .futuro li:nth-child(4) { animation-delay: 1.8s; }
+    .futuro li:nth-child(5) { animation-delay: 2.3s; }
+
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-voltar {
+      margin-top: 40px;
+      background: #ff69b4;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    .btn-voltar:hover {
+      background: #e60073;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="hearts"></canvas>
+
+<div class="container">
+  <h1>Nosso Futuro Juntos e Como Imagino ele 💭</h1>
+
+  <div class="futuro">
+    <h2>Coisas que ainda quero viver com você</h2>
+    <ul>
+      <li>Viajar juntos para praia juntos um dos meus maiores sonhos aquelas tropical escondida tipo airbnb ✈️</li>
+      <li>Eu me imagino sendo pai de pet quando a gente mora no nosso apartamento, imagina eu levando os gatinho ou os cahorro pa passear em alguma pracinha nois dois 🌳</li>
+      <li>Ver o pôr do sol de mãos dadas,tenho a teoria que ce fica mais linda com tons alaranjados tipo por do sol, imagina esses olhos castanhos lindos com o sol brilhando neles,ia ser mais lindo que o proprio por do sol 🌅</li>
+      <li>Assistir todos os episódios de South Park lado a lado, por ser algo que nois dois gosta e pelo humor quebradssimo nosso kkk, seria maraviloso nois no nosso cantinho comendo besteira vendo junto numa quarta a noite qualquer,ja e um prazer estar com você, imagina fazendo algo que a gente gosta🍿</li>
+      <li>Continuar te amando mais a cada dia 💗</li>
+    </ul>
+  </div>
+
+  <button class="btn-voltar" onclick="location.href='motivo_por_dia.html'">PROXIMO</button>
+</div>
+
+<script>
+  const canvas = document.getElementById('hearts');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const hearts = [];
+
+  for (let i = 0; i < 50; i++) {
+    hearts.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 10 + 5,
+      speed: Math.random() * 1 + 0.5,
+      opacity: Math.random()
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hearts.forEach(h => {
+      ctx.beginPath();
+      ctx.globalAlpha = h.opacity;
+      ctx.fillStyle = '#ff69b4';
+      ctx.arc(h.x, h.y, h.size, 0, Math.PI * 2);
+      ctx.fill();
+      h.y -= h.speed;
+      if (h.y < -10) {
+        h.y = canvas.height + 10;
+        h.x = Math.random() * canvas.width;
+      }
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Para o amor da minha vida 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #8b005d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #ffb6c1;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: pulse 2s infinite;
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 100px solid #ff69b4;
+      z-index: 2;
+    }
+
+    .carta-container {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 90vw;
+      max-width: 800px;
+      height: 90vh;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: fadeIn 2s forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .carta-texto {
+      margin-top: 20px;
+      max-height: 60vh;
+      width: 100%;
+      overflow-y: auto;
+      text-align: left;
+      padding: 20px;
+      border-radius: 15px;
+      background: #fff0f8;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+      line-height: 1.6;
+      font-size: 1.2em;
+    }
+
+    .carta-texto::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .carta-texto::-webkit-scrollbar-track {
+      background: #ffe4e1;
+      border-radius: 10px;
+    }
+
+    .carta-texto::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 10px;
+    }
+
+    .btn {
+      background-color: #ffb6c1;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Envelope para abrir a carta -->
+  <div class="envelope" onclick="abrirCarta()"></div>
+
+  <!-- Carta com scroll -->
+  <div class="carta-container" id="carta">
+    <h1>Minha cartinha pra você 💌</h1>
+    <div class="carta-texto">
+      <p>Oiii, meu amorzinho 💕</p>
+      <p>
+        Desde que você entrou na minha vida, tudo ficou mais bonito. Cada momento ao seu lado é unico, e aquela duvida no começo ja nao existe mais, porque voce e minha certeza
+      </p>
+      <p>
+        Seu sorriso ilumina meus dias, sua voz me acalma, e seu abraço é meu lugar favorito no mundo. Eu sou tão grato por ter você comigo, por cada risada boba ou brincadeira, por cada olhar, por cada "eu te amo" dito seja qualquer o motivo.
+      </p>
+      <p>
+        Às vezes me pego pensando em como tive tanta sorte de te encontrar. É como se o universo tivesse conspirado pra gente se achar e viver esse amor tão nosso, tão único, tão verdadeiro.
+      </p>
+      <p>
+        Eu prometo cuidar de você, te apoiar, e te amar cada vez mais. Porque você é o melhor presente que a vida já me deu. 💖
+      </p>
+      <p>
+        Pra sempre com você,<br>
+        💘 TE AMO 💘
+      </p>
+    </div>
+
+    <button class="btn" onclick="location.href='Coisas que eu amo em você 💗.html'">TEM MAIS EM 🌸</button>
+  </div>
+
+  <!-- Música de fundo -->
+  <audio autoplay loop>
+    <source src="iris" type="audio/mpeg">
+    Seu navegador não suporta áudio :(
+  </audio>
+
+  <script>
+    function abrirCarta() {
+      document.querySelector('.envelope').style.display = 'none';
+      document.getElementById('carta').style.display = 'flex';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Um Motivo Por Dia 💘</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      font-family: 'Comic Sans MS', cursive;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .conteudo {
+      position: relative;
+      z-index: 1;
+      background: #ffe4ec;
+      padding: 40px 30px;
+      border-radius: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+      animation: aparecer 1s ease forwards;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .motivo {
+      font-size: 1.4em;
+      color: #8b005d;
+      margin-bottom: 30px;
+    }
+
+    .btn-voltar {
+      background: #ff69b4;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    .btn-voltar:hover {
+      background: #e60073;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="hearts"></canvas>
+
+<div class="conteudo">
+  <h1>Um Motivo Por Dia 💘</h1>
+  <div class="motivo" id="motivo">
+    Carregando motivo...
+  </div>
+  <button class="btn-voltar" onclick="location.href='index.html'">Voltar para o início 💌</button>
+</div>
+
+<script>
+  const motivos = [
+    "Seu sorriso ilumina até os meus dias mais escuros ☀️",
+    "Você me entende como ninguém 💞",
+    "Cada momento com você vira memória boa 🧸",
+    "Até seu jeitinho bravo é fofo demais 😠❤️",
+    "Com você, eu me sinto em casa 🏡",
+    "Você me inspira a ser uma pessoa melhor 🌱",
+    "A forma como você cuida de mim é única 🫂",
+    "Seu cheirinho é o melhor do mundo 🌸",
+    "Seu abraço é meu lugar favorito 🤗",
+    "Só de pensar em você, eu sorrio sem perceber 😊"
+  ];
+
+  function mostrarMotivo() {
+    const hoje = new Date().getDate(); // usa o dia do mês como base
+    const motivo = motivos[hoje % motivos.length];
+    document.getElementById("motivo").textContent = motivo;
+  }
+
+  mostrarMotivo();
+
+  // corações de fundo
+  const canvas = document.getElementById('hearts');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const hearts = [];
+
+  for (let i = 0; i < 50; i++) {
+    hearts.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 10 + 5,
+      speed: Math.random() * 1 + 0.5,
+      opacity: Math.random()
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hearts.forEach(h => {
+      ctx.beginPath();
+      ctx.globalAlpha = h.opacity;
+      ctx.fillStyle = '#ff69b4';
+      ctx.arc(h.x, h.y, h.size, 0, Math.PI * 2);
+      ctx.fill();
+      h.y -= h.speed;
+      if (h.y < -10) {
+        h.y = canvas.height + 10;
+        h.x = Math.random() * canvas.width;
+      }
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
